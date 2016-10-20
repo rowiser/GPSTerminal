@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">行车位置</string>
+    <string name="save_settings">保存</string>
+    <string name="host">主机地址</string>
+    <string name="port">端口</string>
+    <string name="device">设备ID</string>
+    <string name="cycle">上传周期</string>
+    <string name="default_host">sz.gxfy.net</string>
+    <string name="default_port">6969</string>
+    <string name="default_device">""</string>
+    <string name="default_cycle">60</string>
+    <string name="null_info_tips">%1$s不能为空.</string>
+
+    <string name="longitude">经度:</string>
+    <string name="latitude">纬度:</string>
+    <string name="time">时间:</string>
+    <string name="module">模式:</string>
+    <string name="address">地址:</string>
+
+    <string name="exit">退出</string>
+    <string name="settings">设置</string>
+    <string name="back">返回</string>
+
+    <string name="exit_tips">退出后将停止上传数据,仍然退出吗?</string>
+    <string name="tips_title">警告</string>
+
+</resources>

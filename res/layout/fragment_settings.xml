@@ -1,0 +1,72 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/corners_bg"
+        android:orientation="vertical">
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+            <EditText
+                android:id="@+id/host"
+                style="@style/edit_view_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="@string/host"
+                android:enabled="false"
+                android:text="@string/default_host" />
+
+            <EditText
+                android:id="@+id/port"
+                style="@style/edit_view_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:enabled="false"
+                android:maxLength="6"
+                android:hint="@string/port"
+                android:text="@string/default_port" />
+
+            <EditText
+                android:id="@+id/device"
+                style="@style/edit_view_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="@string/device"
+                android:text="@string/default_device" />
+
+            <EditText
+                android:id="@+id/cycle"
+                style="@style/edit_view_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:maxLength="6"
+                android:hint="@string/cycle"
+                android:text="@string/default_cycle" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/save_settings"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:text="@string/save_settings" />
+
+</LinearLayout>
