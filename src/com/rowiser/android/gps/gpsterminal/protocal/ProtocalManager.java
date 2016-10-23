@@ -5,6 +5,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.os.storage.StorageManager;
 import android.telephony.TelephonyManager;
+import android.util.Log;
 
 import com.rowiser.android.gps.gpsterminal.GPSTerminalService;
 import com.rowiser.android.gps.gpsterminal.bean.SettingInfo;
@@ -30,7 +31,7 @@ public class ProtocalManager {
     private ReceiveThread mReceiveThread;
 
     private static ProtocalManager mProtocalManager;
-    private Socket mClient;
+    private Socket mClient=null;
 
     private DataReceiveListener mDataReceiveListener;
 
@@ -63,7 +64,7 @@ public class ProtocalManager {
                 @Override
                 public void run() {
                     try {
-//                    mClient = new Socket("222.216.28.83", 8841);
+                   
 //                        mClient = new Socket("116.252.185.93", 6969);
 //                    mClient = new Socket("116.252.185.93", 6767);
                     	if(mClient != null){
@@ -75,17 +76,24 @@ public class ProtocalManager {
 							}
                     	}
                         mClient = new Socket(host, port);
+                    	// mClient = new Socket("192.168.3.180", 8000);
+                       
+                    	if(mClient != null) 
+                    	Log.i(TAG,"连接到服务器成功!");
                         mInputStream = mClient.getInputStream();
                         mOutputStream = mClient.getOutputStream();
                         mReceiveThread = new ReceiveThread(mInputStream, mHandler);
                         mIsStop = false;
                         mReceiveThread.start();
-                    } catch (Exception e) {
+                    }catch (IOException e) {
+                    	mIsStop = true;
+                    	Log.e(TAG,"无法连接到端口：" + port);  
+                    }  catch (Exception e) {
                         mIsStop = true;
                         e.printStackTrace();
-                        LOG.print("无法连接到服务器!");
+                        Log.e(TAG,"无法连接到服务器!"+e.getMessage());
                         if(mDataReceiveListener != null){
-                            mDataReceiveListener.connect2serverError();
+                          //  mDataReceiveListener.connect2serverError(); //改为不提示
                         }
                     } finally {
 
@@ -185,13 +193,13 @@ public class ProtocalManager {
             	mIsStop = true;
                 e.printStackTrace();
                 if(mDataReceiveListener != null){
-                    mDataReceiveListener.exitByException("主机或端口更改,正在重启!");
+                   // mDataReceiveListener.exitByException("主机或端口更改,正在重启!");
                 }
             }
         }else{
         	mIsStop = true;
         	if(mDataReceiveListener != null){
-                mDataReceiveListener.exitByException("上传通道为空!");
+                //mDataReceiveListener.exitByException("上传通道为空!");
             }
         }
     }

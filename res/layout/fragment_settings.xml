@@ -25,7 +25,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:hint="@string/host"
-                android:enabled="false"
                 android:text="@string/default_host" />
 
             <EditText
@@ -33,10 +32,9 @@
                 style="@style/edit_view_style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:inputType="number"
-                android:enabled="false"
-                android:maxLength="6"
                 android:hint="@string/port"
+                android:inputType="number"
+                android:maxLength="6"
                 android:text="@string/default_port" />
 
             <EditText

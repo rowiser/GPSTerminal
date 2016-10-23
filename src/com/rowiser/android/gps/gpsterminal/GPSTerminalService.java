@@ -257,8 +257,8 @@ public class GPSTerminalService extends Service {
 //                    }
 //                });
                 // 设置监听器，自动更新的最小时间为间隔N秒(1秒为1*1000，这样写主要为了方便)或最小位移变化超过N米
-                locationManager.requestLocationUpdates(provider, 10 * 1000, 5, new LocationListener() {
-
+                locationManager.requestLocationUpdates(provider, 10 * 1000, 10, new LocationListener() {
+                //alogo 5 to 10
                     @Override
                     public void onLocationChanged(Location location) {
                         if(location != null) {
@@ -348,6 +348,7 @@ public class GPSTerminalService extends Service {
     private void updateToNewLocation() {
 //        TextView tv1 = (TextView) this.findViewById(R.id.tv);
         if (location != null) {
+        	//百度定位成功
             double latitude = location.getLatitude();
             double longitude= location.getLongitude();
             if(normalLatitude != 0 && normalLongitude != 0){
@@ -382,8 +383,8 @@ public class GPSTerminalService extends Service {
             //收星个数
             int satelliteCount = location.getSatelliteNumber();
 //            tv1.setText("纬度：" +  latitude+ "\n经度" + longitude + "\n速度:" + speed + "\n精度:" + accuracy + "\n方位:" + bearing + "\n收星:" + mSatelliteCount);
-            LOG.print("纬度：" +  latitude+ "\n经度" + longitude + "\n速度:" + speed + "\n精度:" + accuracy + "\n方位:" + bearing + "\n收星:" + satelliteCount + "\n时间:" + time
-                    + "\n地址:" + address, JLog.TYPE_INFO);
+           /* LOG.print("纬度：" +  latitude+ "\n经度" + longitude + "\n速度:" + speed + "\n精度:" + accuracy + "\n方位:" + bearing + "\n收星:" + satelliteCount + "\n时间:" + time
+                    + "\n地址:" + address, JLog.TYPE_INFO);*/
 
             Calendar calendar = Calendar.getInstance();
             int year = calendar.get(Calendar.YEAR);
@@ -734,7 +735,7 @@ public class GPSTerminalService extends Service {
                         getNormalLocation();
                         startBaiDuLocation();
                     }
-                }, 2000);
+                }, 5000);
             }else{
                 mHandler.post(new Runnable() {
                     @Override
